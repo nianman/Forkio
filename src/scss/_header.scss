@@ -1,13 +1,236 @@
-.navbar {
-  display: flex;
-  background-color: $darkGrey;
-  padding: 1.2rem 1.2rem 1.2rem 1.85rem;
-  &__title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.21rem;
-    color: white;
+
+.a {
+  font-size: 30px;
+}
+
+
+.revo {
+  padding-bottom: 6rem;
+  &__header {
+    padding-top: 1rem;
+    font-size: 2.5rem;
+    color: #635c73;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 3.5rem;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    width: 83%;
+    color: #717171;
+    margin: 1.4rem auto 0 auto;
+    text-align: center;
+
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 2rem auto 0 auto;
+    width: 250px;
+    &__element:last-child{
+      margin: 1rem auto 0 auto;
+    }
+    &__element {
+      margin-right: 1rem;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: stretch;
+      border: 0.1rem solid #d5d5d5;
+      position: relative;
+
+      &--name {
+        background-color: #f9f9f9;
+        display: flex;
+        align-items: baseline;
+        padding: 0.5rem 1rem;
+        border-right: 1px solid #d5d5d5;
+        &--p{
+          padding-left: 0.5rem;
+        }
+      }
+
+      &--number {
+        padding: 0.5rem 1rem;
+
+      }
+
+
+    }
   }
 }
+
+.here {
+  padding-bottom: 2rem;
+  &__bg{
+    background-image: url("../img/here-bg.png");
+    height: 382px;
+    margin-top: 5rem;
+  }
+  &__header {
+    font-size: 4rem;
+    width: 80%;
+    text-align: center;
+    margin: 3rem auto 1rem auto;
+    color: #8d81ac;
+    font-weight: bold;
+  }
+
+  &__item {
+    text-align: center;
+
+    &__img {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    &__h {
+      font-size: 2rem;
+      margin-top: 1rem;
+      color: #4c4c4c;
+    }
+
+    &__p {
+      width: 83%;
+      margin: 1.5rem auto 0 auto;
+      color: #848e97;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.fork {
+  background-color: #4b3b4e;
+  color: white;
+  text-align: center;
+  padding-bottom: 2rem;
+
+  &__h {
+    font-size: 3rem;
+    padding: 4rem 0 3.5rem 0;
+    font-weight: bold;
+    width: 80%;
+    margin: 0 auto;
+
+  }
+
+  &__item {
+    background-color: #5f5161;
+    width: 257px;
+    margin: 0 auto 1rem auto;
+    padding-bottom: 4rem;
+    &__h {
+      padding: 4rem 0 3.5rem 0;
+      text-transform: uppercase;
+      font-size: 2.5rem;
+      background-color: #685b6a;
+    }
+
+    &__price {
+      padding: 3rem 0 0 0;
+      font-size: 5rem;
+      font-weight: bold;
+    }
+
+    &__month {
+      color: #8f8691;
+      font-size: 1rem;
+      text-transform: uppercase;
+      padding: 2rem 0 0 0;
+      position: relative;
+    }
+
+    &__month::after {
+      position: absolute;
+      display: table;
+      content: "";
+      width: 5rem;
+      height: 0.5rem;
+      background-color: #8d81ac;
+      top: 6rem;
+      left: 41%;
+    }
+
+    &__license {
+      padding-top: 7rem;
+      padding-bottom: 8rem;
+      text-transform: capitalize;
+      font-size: 2rem;
+    }
+
+    &__button {
+      text-decoration: none;
+      text-transform: uppercase;
+      background-color: #776b79;
+      padding: 1rem 2.5rem;
+      margin: 8rem 0 3rem 0;
+      border-radius: 25px;
+      color: white;
+      font-size: 1.5rem;
+    }
+  }
+
+
+
+
+}
+
+.fork__item--clicked{
+    width: 277px;
+    background-color: #413344;
+    padding-bottom: 5rem;
+    margin: 0 auto 1rem auto;
+
+    &__h {
+      padding: 4rem 0 3.5rem 0;
+      text-transform: uppercase;
+      font-size: 3rem;
+      background-color: #3a2d3d;
+    }
+    &__price {
+      padding: 3.5rem 0 0 0;
+      font-size: 6rem;
+      font-weight: bold;
+    }
+    &__month {
+      color: #8f8691;
+      font-size: 2rem;
+      text-transform: uppercase;
+      padding: 2.5rem 0 0 0;
+      position: relative;
+    }
+    &__month::after {
+      position: absolute;
+      display: table;
+      content: "";
+      width: 5rem;
+      height: 0.5rem;
+      background-color: #8d81ac;
+      top: 6rem;
+      left: 41%;
+    }
+    &__license {
+      padding-top: 7rem;
+      padding-bottom: 8rem;
+      text-transform: capitalize;
+      font-size: 2rem;
+    }
+    &__button {
+      text-decoration: none;
+      text-transform: uppercase;
+      background-color: #776b79;
+      padding: 1rem 2.5rem;
+      margin: 8rem 0 3rem 0;
+      border-radius: 25px;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+  }
+
 
 //.menu {
 //  &__item {

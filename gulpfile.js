@@ -1,36 +1,41 @@
-const gulp = require('gulp'),
-      sass = require('gulp-sass'),
-      prefixer = require('gulp-autoprefixer'),
-      browserSync = require('browser-sync').create(),
-      concat = require('gulp-concat'),
-      clean = require('gulp-clean'),
-      babel = require('gulp-babel'),
-      uglify = require('gulp-uglify'),
-      cleanCSS = require('gulp-clean-css');
+const   gulp = require('gulp'),
+    clean = require('gulp-clean'),
+    sass = require('gulp-sass'),
+    concat = require('gulp-concat'),
+    babel = require('gulp-babel'),
+    uglify = require('gulp-uglify'),
+    minifyCSS = require('gulp-clean-css'),
+    prefixer = require('gulp-autoprefixer'),
+    imagemin = require('gulp-imagemin'),
+    browserSync = require('browser-sync').create();
 
 const path = {
-    dist: {
-        self: "./dist/",
-        html: "dist/",
-        css: "dist/css/",
-        js: "dist/js/",
-        img: "dist/img"
-    },
     src: {
-        html: "src/**/*.html",
-        scss: "src/scss/style.scss",
-        js: "src/**/*.js",
+        scss: "src/scss/**/*.scss",
+        js: "src/js/*.js",
         img: "src/img/**/*"
     },
-    watch: {
+    dist : {
+        self: "./dist",
+        css: "dist/css/",
+        js: "dist/js/",
+        img: "dist/img/"
+    },
+    watch : {
         scss: "src/**/*.scss"
     }
+
 };
 
-/*** CREATING FUNCTIONS ***/
-const buildHTML = () => (
-    gulp.src(path.src.html)
-        .pipe(gulp.dest(path.dist.html))
+const cleanDist = () => (
+    gulp.src(path.dist.self, {allowEmpty: true})
+        .pipe(clean())
+);
+
+const buildIMG = () => (
+    gulp.src(path.src.img)
+        .pipe(imagemin())
+        .pipe(gulp.dest(path.dist.img))
 );
 
 const buildSCSS = () => (
@@ -39,13 +44,15 @@ const buildSCSS = () => (
         .pipe(prefixer({
             cascade: false
         }))
-        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(minifyCSS( {compatibility: 'ie8'}))
+        .pipe(concat("style.min.css"))
         .pipe(gulp.dest(path.dist.css))
 );
 
+
 const buildJS = () => (
     gulp.src(path.src.js)
-        .pipe(concat("script.js"))
+        .pipe(concat("script.min.js"))
         .pipe(babel({
             presets: ['@babel/env']
         }))
@@ -53,38 +60,25 @@ const buildJS = () => (
         .pipe(gulp.dest(path.dist.js))
 );
 
-const buildIMG = () => (
-    gulp.src(path.src.img)
-        .pipe(gulp.dest(path.dist.img))
-);
-
-const cleanDist = () => (
-    gulp.src(path.dist.self)
-        .pipe(clean())
-);
-
 const watcher = () => {
     browserSync.init({
         server: {
-            baseDir: path.dist.self
+            baseDir: "./"
         }
     });
 
-    gulp.watch(path.src.html, buildHTML).on('change', browserSync.reload);
     gulp.watch(path.watch.scss, buildSCSS).on('change', browserSync.reload);
     gulp.watch(path.src.js, buildJS).on('change', browserSync.reload);
     gulp.watch(path.src.img, buildIMG).on('change', browserSync.reload);
 };
 
-/*** CREATING TASKS ***/
-gulp.task('html', buildHTML);
-gulp.task('scss', buildSCSS);
-
-gulp.task('default', gulp.series(
+gulp.task('build', gulp.series(
     cleanDist,
-    buildHTML,
     buildSCSS,
     buildJS,
-    buildIMG,
+    buildIMG
+));
+
+gulp.task('dev', gulp.series(
     watcher
 ));
